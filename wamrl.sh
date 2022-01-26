@@ -10,8 +10,8 @@ specinvoke -n compare.cmd | grep -o "> .*.cmp" | sed 's/>/cat/g' >> check.sh
 chmod +x run.sh
 chmod +x check.sh
 
-{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wamrl-"$1".out
-{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wamrl-"$1".out
-{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wamrl-"$1".out
-./check.sh | grep -v "specdiff run completed" >> ~/spec-configs/wamrl-"$1".out
-echo "-------------------------" >> ~/spec-configs/wamrl-"$1".out
+{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wamrl-"$1".txt
+{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wamrl-"$1".txt
+{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wamrl-"$1".txt
+./check.sh | grep -v "specdiff run completed" >> ~/spec-configs/wamrl-"$1".txt
+echo "-------------------------" >> ~/spec-configs/wamrl-"$1".txt
