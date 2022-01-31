@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SIZE = "$1"
+
 echo '#!/bin/bash' > run.sh
 echo '#!/bin/bash' > check.sh
 
@@ -10,8 +12,8 @@ specinvoke -n compare.cmd | grep -o "> .*.cmp" | sed 's/>/cat/g' >> check.sh
 chmod +x run.sh
 chmod +x check.sh
 
-{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wavm-"$1".txt
-{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wavm-"$1".txt
-{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wavm-"$1".txt
-./check.sh | grep -v "specdiff run completed" >> ~/spec-configs/wavm-"$1".txt
-echo "-------------------------" >> ~/spec-configs/wavm-"$1".txt
+{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wavm-"$SIZE".txt
+{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wavm-"$SIZE".txt
+{ time source ./run.sh; } |& grep "real" >> ~/spec-configs/wavm-"$SIZE".txt
+./check.sh | grep -v "specdiff run completed" >> ~/spec-configs/wavm-"$SIZE".txt
+echo "-------------------------" >> ~/spec-configs/wavm-"$SIZE".txt
