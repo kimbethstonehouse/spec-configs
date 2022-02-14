@@ -18,17 +18,16 @@ chmod +x specinvoke.sh
 if [ -z "$TIME_COMPILATION" ]
 then
     echo '#!/bin/bash' > specdiff.sh
-    specinvoke -n compare.cmd | grep specdiff >> check.sh
+    specinvoke -n compare.cmd | grep specdiff >> specdiff.sh
     specinvoke -n compare.cmd | grep -o "> .*.cmp" | sed 's/>/cat/g' >> specdiff.sh
     chmod +x specdiff.sh
 else
-    specinvoke -n compare.cmd | grep -o "> .*.out" | sed 's/> //g' > specdiff.sh
+    specinvoke -n | grep -o "> .*.out" | sed 's/> //g' > specdiff.sh
 fi
-
 
 for x in 1 2 3
 do
-    { time source ./specinvoke.sh; } |& grep "real" >> ~/spec-configs/"$RUNTIME"-"$SIZE".txt
+    { time -p source ./specinvoke.sh; } |& grep "real" >> ~/spec-configs/"$RUNTIME"-"$SIZE".txt
     if [ -z "$TIME_COMPILATION" ]
     then
         ./specdiff.sh | grep -v "specdiff run completed" >> ~/spec-configs/"$RUNTIME"-"$SIZE".txt
